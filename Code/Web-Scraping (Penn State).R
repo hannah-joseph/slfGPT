@@ -1,25 +1,38 @@
 # Web-scraping (Penn State)
 
-install.packages("rvest")
+# install.packages("rvest")
+
+# Installed Rvest and assigned Penn State's Spotted Lanternfly Website to an object
+
 library(rvest)
+link <-"https://extension.psu.edu/spotted-lanternfly"
+PSU_SLF <- read_html(link)
+PSU_SLF
 
-main <-read_html("https://extension.psu.edu/spotted-lanternfly-management-resources")
+# Out-put:
+# > PSU_SLF
+# {html_document}
+# <html lang="en">
+#   [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF- ...
+# [2] <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": ...
 
-slf_guide <- read_html("https://extension.psu.edu/spotted-lanternfly-management-guide")
+# ----------------------------------------------------------------------------------
 
-# Using CSS selectors to scrape heading section
+# Starting on first article: Spotted Lanternfly Management Guide
+article1 <- "https://extension.psu.edu/spotted-lanternfly-management-guide"
+management_guide <- read_html(article1)
+print(management_guide)
 
-heading = html_node(slf_guide, 'h2')
-text = html_text(heading)
-text
+# Out-put:
+# > management_guide
+# {html_document}
+# <html lang="en">
+#   [1] <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: ht ...
+# [2] <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": ...> management_guide
+# {html_document}
+# <html lang="en">
+# [1] <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: ht ...
+# [2] <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": ...
 
-# Using CSS selectors to scrape all paragraphs
-
-para = html_node(slf_guide,'h2+p')
-para_text = html_text(para)
-print(head(para_text))
-
-para2 = html_node(slf_guide,'p+p')
-para2_text = html_text(para2)
-print(head(para2_text))
+article1_text <-
 
